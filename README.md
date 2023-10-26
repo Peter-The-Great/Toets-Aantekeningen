@@ -171,7 +171,7 @@ Als je gebruik maakt van een generic-type wat wel aan bepaalde eisen moet voldoe
 
 Voorbeeld:
 ```cs
-public class Program
+public class Program<T>
 {
     public static T findMax(T[] items) where T : IComparable<T>
     {
