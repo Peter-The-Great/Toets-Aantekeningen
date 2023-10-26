@@ -171,13 +171,18 @@ Als je gebruik maakt van een generic-type wat wel aan bepaalde eisen moet voldoe
 
 Voorbeeld:
 ```cs
-public class Program<T>
+public class Program<T> where T : IComparable<T>
 {
-    public static T findMax(T[] items) where T : IComparable<T>
+    public static T FindMax(T[] items)
     {
+        if (items.Length == 0)
+        {
+            throw new InvalidOperationException("The input array is empty.");
+        }
+
         T max = items[0];
 
-        for (T item in items)
+        foreach (T item in items)
         {
             if (item.CompareTo(max) > 0)
             {
