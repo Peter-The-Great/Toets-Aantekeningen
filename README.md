@@ -1,4 +1,7 @@
 # Toets Matrijs Aantekeningen
+**Documentversie: 27-okt-2023 11:47**
+
+**Author: Laurens Frensen (22106189)**
 
 De wegingen en wat we moeten kennen heb ik van de [toetsmatrijs](https://brightspace.hhs.nl/d2l/le/lessons/56633/units/567017) verkregen. Deze informatie heb ik vervolgens gesorteerd om de zwaarst wegende dingen bovenaan te zetten en heb ik anders geformatteert. Ook heb ik de kennis er bij gezet conform mijn aantekeningen en online onderzoek (bronnen zijn vermeld):
 
@@ -171,18 +174,13 @@ Als je gebruik maakt van een generic-type wat wel aan bepaalde eisen moet voldoe
 
 Voorbeeld:
 ```cs
-public class Program<T> where T : IComparable<T>
+public class Program
 {
-    public static T FindMax(T[] items)
+    public static T findMax(T[] items) where T : IComparable<T>
     {
-        if (items.Length == 0)
-        {
-            throw new InvalidOperationException("The input array is empty.");
-        }
-
         T max = items[0];
 
-        foreach (T item in items)
+        for (T item in items)
         {
             if (item.CompareTo(max) > 0)
             {
@@ -351,6 +349,14 @@ var result = stringList.Where(s => s.Contains("Tutorials"));
 ### Aggregate
 Aggregate doet eigenlijk dit: `f(item10, f(item9, f(item8, f(item7, f(item6, f(item5, f(item4, f(item3, f(item2, item1)))))))));`
 
+```cs
+IList<int> items = new List<int>() {
+    1, 2, 3, 4
+};
+
+var result = items.Aggregate((a, b) => a + b);  // int result = 10;
+```
+
 ## Je begrijpt welk probleem een ORM oplost, en tegen welke problemen je aan loopt bij het gebruik van een ORM.
 ### Welk probleem lost een ORM op?
 Bron: [ChatGPT-conversatie](https://chat.openai.com/share/7c2e7796-fec9-4334-b8fe-6ca42d31997a)
@@ -372,6 +378,7 @@ Bron: [ChatGPT-conversatie](https://chat.openai.com/share/7c2e7796-fec9-4334-b8f
 
 ## Je kent de verschillende manier van laden: explicit loading, eager loading en lazy loading.
 Bron: [HashNode](https://corree.hashnode.dev/understanding-lazy-loading-eager-loading-and-explicit-loading-in-entity-framework-core)
+
 ### Explicit loading
 Laad als we expliciet de `Load` methode aanroepen.
 
@@ -443,7 +450,9 @@ HTTP maar dan met cryptografische beveiliging (encryptie, digital-signatures, et
 ### JWT tokens (JSON Web Token)
 Bron: [Wikipedia](https://en.wikipedia.org/wiki/JSON_Web_Token)
 
-MISSING
+Een manier om data met een optionele digitale handtekening en optioneel gebruik van encryptie die een aantal claims doet (bijvoorbeeld, ik ben ingelogd als admin).
+
+Dit token wordt digitaal ondertekent door de server.
 
 ### DDOS (Distributed Denial Of Service)
 Bron: [Wikipedia](https://en.wikipedia.org/wiki/Denial-of-service_attack#Distributed_DoS)
@@ -659,7 +668,11 @@ Bron: [ChatGPT-conversatie](https://chat.openai.com/share/762aca1b-0e09-4087-920
 
 - **API-testing en debugging:** met Postman kan je makkelijk requests doen, en dus makkelijk API's testen en debuggen.
 - **Automatisch testen:** met Postman kan je automatisch testen.
-- Etc, zie de bron.
+- **API Documentatie:** Postman maakt het makkelijk om API's te documenteren. Je kan gedetaileerde documentatie voor je API's maken, inclusief voorbeeld requests en responses, deze kunnen met andere ontwikkelaars worden gedeeld.
+- **API Monitoring:** Postman bied opties om capabiliteiten te monitoren en tests in te plannen die dan automatisch elke zoveel tijd worden uitgevoerd om de beschikbaarheid en prestaties van je API in de gaten te houden.
+- **API Mocking:** Postman maakt het mogelijk mock-servers voor API's te maken. Dit kan handig zijn voor frontend ontwikkelaars die aan hun code moeten werken voordat de API klaar is.
+- **Samenwerking:** Postmand maakt het mogelijk om heel veel dingen te delen. Dit maakt het makkelijker om samen aan dingen te werken.
+- Etc. Zie bron.
 
 ### Welke functie services in ASP.NET Core hebben
 MISSING
@@ -696,6 +709,8 @@ Voorbeeldje van een controller (gedeeltelijk).
   }
 ```
 ### Model validation
+Bron: [Microsoft - Learn](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-7.0)
+
 MISSING
 
 ### Model binding
